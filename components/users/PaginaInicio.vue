@@ -1,4 +1,5 @@
 <template>
+  <!--<div class="FondoPantalla"></div>-->
   <div>
     <!-- Barra de Navegación -->
     <v-app-bar class="top-card">
@@ -214,6 +215,15 @@
 </template>
 
 <style scoped>
+
+.FondoPantalla {
+  background-image: url('@/img/FondoP.jpg'); /* Ruta a tu imagen */
+  background-size: cover; /* Ajusta la imagen para que cubra todo el fondo */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-position: center; /* Centra la imagen */
+  min-height: 100vh; /* Asegura que el contenedor cubra al menos la altura de la ventana */
+}
+
 .top-card {
   position: fixed;
   top: 0;
