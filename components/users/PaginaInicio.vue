@@ -11,8 +11,11 @@
       </div>
       <v-spacer />
       <v-toolbar-items>
-        <img src="@/img/Usuario.png" alt="Usuario" height="35px" style="margin-right: 10px;">
-        <img src="@/img/Carrito.png" alt="Carrito" height="35px">
+        <v-btn icon color="black">
+          <v-icon>
+            mdi-account
+          </v-icon>
+        </v-btn>
       </v-toolbar-items>
     </v-app-bar>
 

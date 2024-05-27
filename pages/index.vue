@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import LoginUser from '@/components/users/LoginUser.vue'
+import LoginUser from '@/components/users/PaginaInicio.vue' /* Esta es la primer página que despliega el ejecutar */
 
 export default {
   name: 'IndexPage',
