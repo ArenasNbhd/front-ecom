@@ -16,6 +16,11 @@
             mdi-account
           </v-icon>
         </v-btn>
+        <v-btn icon color="black">
+          <v-icon>
+            mdi-cart
+          </v-icon>
+        </v-btn>
       </v-toolbar-items>
     </v-app-bar>
 
