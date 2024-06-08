@@ -37,7 +37,8 @@
           Follow the instructions and answer the fields.
           <v-form
             ref="form"
-            v-model="validForm">
+            v-model="validForm"
+          >
             <v-text-field
               v-model="email"
               label="Email"
@@ -280,6 +281,7 @@
         </v-btn>
       </div>
     </div>
+
     <!-- Div final de la página -->
     <div class="final-container">
       <!-- Línea blanca -->
