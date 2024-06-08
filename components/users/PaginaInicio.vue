@@ -1,5 +1,6 @@
 <template>
   <!--<div class="FondoPantalla"></div>-->
+  <!--Es correcto-->
   <div>
     <!-- Barra de Navegación -->
     <v-app-bar class="top-card">
