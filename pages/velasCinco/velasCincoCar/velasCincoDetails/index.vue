@@ -155,11 +155,11 @@ export default {
 }
 
 .left-side {
-  background-color: #f0f0f0; /* Color de fondo para la parte izquierda */
+  background-color: white; /* Color de fondo para la parte izquierda */
 }
 
 .right-side {
-  background-color: #ffffff; /* Color de fondo para la parte derecha */
+  background-color: #f0f0f0; /* Color de fondo para la parte derecha */
 }
 
 .logo {

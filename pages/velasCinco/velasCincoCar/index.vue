@@ -48,7 +48,7 @@
             <td>
               <div class="product-info">
                 <img src="/img/P5.png">
-                <p>Producto 1</p>
+                <p>Stary Golden</p>
               </div>
             </td>
             <td>{{ product.price }}</td>
