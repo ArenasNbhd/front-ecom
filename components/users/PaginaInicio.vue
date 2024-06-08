@@ -5,6 +5,7 @@
     <v-app-bar class="top-card">
       <img src="@/img/logo.png" alt="Logo" height="40px" style="margin-right: 10px;">
       <v-toolbar-title>Candleaf</v-toolbar-title>
+      <v-spacer />
       <div class="middle-titles">
         <div>Discover</div>
         <div>About</div>
@@ -12,7 +13,7 @@
       </div>
       <v-spacer />
       <v-toolbar-items>
-        <v-btn icon color="black">
+        <v-btn icon color="black" @click="showSignup = true">
           <v-icon>
             mdi-account
           </v-icon>
@@ -24,6 +25,64 @@
         </v-btn>
       </v-toolbar-items>
     </v-app-bar>
+
+    <!-- Ventanas modales -->
+    <v-dialog v-model="showSignup" max-width="500" persistent>
+      <v-card>
+        <v-card-tittle class="headline">
+          Welcome, dear new user.
+        </v-card-tittle>
+        <v-card-text>
+          Follow the instructions and answer the fields.
+          <v-form
+            ref="form"
+            v-model="validForm">
+            <v-text-field
+              v-model="email"
+              label="Email"
+              placeholder="Write your Email"
+              color="#558B2F"
+              type="email"
+              :rules="correo"
+            />
+            <v-text-field
+              v-model="passwordUser"
+              label="Password"
+              type="password"
+              placeholder="Write your Password"
+              color="#558B2F"
+              :rules="password"
+            />
+            <v-text-field
+              v-model="numeroUser"
+              label="Número Telefónico"
+              type="numero"
+              placeholder="Write your Phone Number"
+              color="#558B2F"
+              :rules="number"
+            />
+          </v-form>
+        </v-card-text>
+        <v-card-actions>
+          <v-row>
+            <v-col cols="6">
+              <v-btn color="blue darken-1" elevation="0" block @click="SignupUser">
+                <span style="text-transform: none; color: white">
+                  Registrarse
+                </span>
+              </v-btn>
+            </v-col>
+            <v-col cols="6">
+              <v-btn color="green darken-1" elevation="0" block @click="LoginUser">
+                <span style="text-transform: none; color: white">
+                  Iniciar Sesión
+                </span>
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
 
     <!-- Cuadro de información -->
     <div class="info-box">
@@ -47,35 +106,75 @@
     <div class="image-grid">
       <div class="grid-item">
         <img src="@/img/P1.png" alt="Imagen 1">
-        <p>Spiced Mint</p>
+        <v-btn color="#E0E0E0" elevation="0" block @click="VelaSpiced">
+          <span style="text-transform: none; color: green">
+            Spiced Mint
+            9.99$
+          </span>
+        </v-btn>
       </div>
       <div class="grid-item">
         <img src="@/img/P2.png" alt="Imagen 2">
-        <p>Sweer Straweberry</p>
+        <v-btn color="#E0E0E0" elevation="0" block @click="VelaSweer">
+          <span style="text-transform: none; color: green">
+            Sweer Strawberry
+            9.99$
+          </span>
+        </v-btn>
       </div>
       <div class="grid-item">
         <img src="@/img/P3.png" alt="Imagen 2">
-        <p>Cool Blueberries</p>
+        <v-btn color="#E0E0E0" elevation="0" block @click="VelaCool">
+          <span style="text-transform: none; color: green">
+            Cool Blueberries
+            9.99$
+          </span>
+        </v-btn>
       </div>
       <div class="grid-item">
         <img src="@/img/P4.png" alt="Imagen 1">
-        <p>Juicy Lemon</p>
+        <v-btn color="#E0E0E0" elevation="0" block @click="VelaJuicy">
+          <span style="text-transform: none; color: green">
+            Juicy Lemon
+            9.99$
+          </span>
+        </v-btn>
       </div>
       <div class="grid-item">
         <img src="@/img/P5.png" alt="Imagen 2">
-        <p>Stary Golden</p>
+        <v-btn color="#E0E0E0" elevation="0" block @click="VelaStary">
+          <span style="text-transform: none; color: green">
+            Stary Golden
+            9.99$
+          </span>
+        </v-btn>
       </div>
       <div class="grid-item">
         <img src="@/img/P6.png" alt="Imagen 2">
-        <p>Fragrant Cinnamon</p>
+        <v-btn color="#E0E0E0" elevation="0" block @click="VelaFragant">
+          <span style="text-transform: none; color: green">
+            Fragant Cinnamon
+            9.99$
+          </span>
+        </v-btn>
       </div>
       <div class="grid-item">
         <img src="@/img/P7.png" alt="Imagen 2">
-        <p>Sumemer Cherries</p>
+        <v-btn color="#E0E0E0" elevation="0" block @click="VelaSumemer">
+          <span style="text-transform: none; color: green">
+            Sumemer Cherries
+            9.99$
+          </span>
+        </v-btn>
       </div>
       <div class="grid-item">
         <img src="@/img/P8.png" alt="Imagen 2">
-        <p>Clean Lavander</p>
+        <v-btn color="#E0E0E0" elevation="0" block @click="VelaClean">
+          <span style="text-transform: none; color: green">
+            Clean Lavander
+            9.99$
+          </span>
+        </v-btn>
       </div>
       <!-- Repite estos divs si quieres agregar mas productos -->
     </div>
@@ -145,19 +244,39 @@
     <div class="image-grid">
       <div class="grid-item">
         <img src="@/img/P1.png" alt="Imagen 1">
-        <p>Spiced Mint</p>
+        <v-btn color="#E0E0E0" elevation="0" block @click="VelaSpiced">
+          <span style="text-transform: none; color: green">
+            Spiced Mint
+            9.99$
+          </span>
+        </v-btn>
       </div>
       <div class="grid-item">
         <img src="@/img/P2.png" alt="Imagen 2">
-        <p>Sweer Straweberry</p>
+        <v-btn color="#E0E0E0" elevation="0" block @click="VelaSweer">
+          <span style="text-transform: none; color: green">
+            Sweer Strawberry
+            9.99$
+          </span>
+        </v-btn>
       </div>
       <div class="grid-item">
         <img src="@/img/P3.png" alt="Imagen 2">
-        <p>Cool Blueberries</p>
+        <v-btn color="#E0E0E0" elevation="0" block @click="VelaCool">
+          <span style="text-transform: none; color: green">
+            Cool Blueberries
+            9.99$
+          </span>
+        </v-btn>
       </div>
       <div class="grid-item">
         <img src="@/img/P4.png" alt="Imagen 1">
-        <p>Juicy Lemon</p>
+        <v-btn color="#E0E0E0" elevation="0" block @click="VelaJuicy">
+          <span style="text-transform: none; color: green">
+            Juicy Lemon
+            9.99$
+          </span>
+        </v-btn>
       </div>
     </div>
     <!-- Div final de la página -->
@@ -213,6 +332,87 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+      showSignup: false,
+      validForm: false,
+      email: null,
+      passwordUser: null,
+      numeroUser: null,
+      required: [
+        v => !!v || 'Required Field'
+      ],
+      password: [
+        v => (v && v.length > 6) || 'Password must be more than 6 chars'
+      ],
+      correo: [
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
+      ],
+      number: [
+        v => (v && v.length > 9) || 'Password must be more than 6 chars'
+      ]
+    }
+  },
+  methods: {
+    LoginUser () {
+      this.validForm = this.$refs.form.validate()
+      if (this.validForm) {
+        // Si se puede loggear, enviamos una alerta
+        const sendData = {
+          email: this.email,
+          password: this.passwordUser,
+          numero: this.numeroUser
+        }
+        const url = '/login'
+        this.$axios.post(url, sendData)
+          .then((res) => {
+            console.log('@@ res => ', res)
+            if (res.data.token) {
+              localStorage.setItem('token', res.data.token)
+
+              // this.$router.push('/components/users/PaginaInicio.vue')
+              // Redirigir a la siguiente página
+            }
+          })
+          .catch((err) => {
+            console.log('@@ err => ', err)
+          })
+      } else {
+        alert('Algo salió mal:(')
+      }
+    },
+    SignupUser () {
+    },
+    VelaSpiced () {
+      this.$router.push('/velasUno')
+    },
+    VelaSweer () {
+      this.$router.push('/velasDos')
+    },
+    VelaCool () {
+      this.$router.push('/velasTres')
+    },
+    VelaJuicy () {
+      this.$router.push('/velasCuatro')
+    },
+    VelaStary () {
+      this.$router.push('/velasCinco')
+    },
+    VelaFragant () {
+      this.$router.push('/velasSeis')
+    },
+    VelaSumemer () {
+      this.$router.push('/velasSiete')
+    },
+    VelaClean () {
+      this.$router.push('/velasOcho')
+    }
+  }
+}
+</script>
 
 <style scoped>
 
