@@ -68,9 +68,9 @@
         <v-card-actions>
           <v-row>
             <v-col cols="6">
-              <v-btn color="blue darken-1" elevation="0" block @click="SignupUser">
+              <v-btn color="blue darken-1" elevation="0" block @click="showSignup = false">
                 <span style="text-transform: none; color: white">
-                  Registrarse
+                  Cancelar
                 </span>
               </v-btn>
             </v-col>

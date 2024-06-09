@@ -29,72 +29,216 @@
 
       <div class="contact">
         <h2>Contact</h2>
-        <p>Do you hace an account? <a href="#" class="login">login</a></p>
+        <p>
+          Do you hace an account?
+          <v-btn color="white" @click="showLogin = true">
+            <span style="text-transform: none; color: green">
+              Login
+            </span>
+          </v-btn>
+        </p>
       </div>
 
-      <div class="cuadro">
-        <input type="text" placeholder="Email or mobile phone number">
-      </div>
+      <v-dialog v-model="showLogin" max-width="500" persistent>
+        <v-card>
+          <v-card-tittle class="headline">
+            Welcome, dear new user.
+          </v-card-tittle>
+          <v-card-text>
+            Follow the instructions and answer the fields.
+            <v-form
+              ref="form"
+              v-model="validForm"
+            >
+              <v-text-field
+                v-model="email"
+                label="Email"
+                placeholder="Write your Email"
+                color="#558B2F"
+                type="email"
+                :rules="correo"
+              />
+              <v-text-field
+                v-model="passwordUser"
+                label="Password"
+                type="password"
+                placeholder="Write your Password"
+                color="#558B2F"
+                :rules="password"
+              />
+              <v-text-field
+                v-model="numeroUser"
+                label="Número Telefónico"
+                type="numero"
+                placeholder="Write your Phone Number"
+                color="#558B2F"
+                :rules="number"
+              />
+            </v-form>
+          </v-card-text>
+          <v-card-actions>
+            <v-row>
+              <v-col cols="6">
+                <v-btn color="red darken-1" elevation="0" block @click="showLogin = false">
+                  <span style="text-transform: none; color: white">
+                    Cancelar
+                  </span>
+                </v-btn>
+              </v-col>
+              <v-col cols="6">
+                <v-btn color="green darken-1" elevation="0" block @click="LoginUser">
+                  <span style="text-transform: none; color: white">
+                    Iniciar Sesión
+                  </span>
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
 
-      <div class="boton">
-        <input type="checkbox"><p>Add me to Candleaf newsletter for a 10% discount</p>
-      </div>
+      <v-btn color="white" @click="newSignup">
+        <span style="text-transform: none; color: green">
+          Check Signup
+        </span>
+      </v-btn>
 
-      <div>
-        <h2>Shipping Address</h2>
-      </div>
+      <v-form
+        ref="formNew"
+        v-model="validFormNew"
+      >
+        <div class="cuadro">
+          <v-text-field
+            v-model="emailNuevo"
+            placeholder="Email or mobile phone number"
+            label="Email"
+            color="#558B2F"
+            type="email"
+            :rules="correo"
+          />
+          <v-text-field
+            v-model="passwordUserNueva"
+            placeholder="Write your Password"
+            label="Password"
+            color="#558B2F"
+            type="password"
+            :rules="password"
+          />
+        </div>
 
-      <div class="cuadro2">
-        <input type="text" placeholder="Name">
-        <input type="text" placeholder="Second Name">
-      </div>
+        <div class="boton">
+          <input type="checkbox"><p>Add me to Candleaf newsletter for a 10% discount</p>
+        </div>
 
-      <div class="cuadro">
-        <input type="text" placeholder="Address and Number ">
-      </div>
+        <div>
+          <h2>Shipping Address</h2>
+        </div>
 
-      <div class="cuadro">
-        <input type="text" placeholder="Shipping note (optional)">
-      </div>
+        <div class="cuadro2">
+          <v-text-field
+            v-model="name"
+            placeholder="Name"
+            label="Name"
+            color="#558B2F"
+            type="name"
+          />
+          <v-text-field
+            v-model="secname"
+            placeholder="Second Name"
+            label="Second Name"
+            color="#558B2F"
+            type="name"
+          />
+        </div>
 
-      <div class="cuadro2">
-        <input type="text" placeholder="City">
-        <input type="text" placeholder="Postal Code">
-        <select>
-          <option value="" disabled selected hidden>
-            Selecciona providencia &#9660;
-          </option>
-          <option value="Providencia 1">
-            Providencia 1
-          </option>
-          <option value="Providencia 2">
-            Providencia 2
-          </option>
+        <div class="cuadro">
+          <v-text-field
+            v-model="adress"
+            placeholder="Adress and Number"
+            label="Adress and Number"
+            color="#558B2F"
+            type="text"
+          />
+          <v-text-field
+            v-model="numeroUserNuevo"
+            placeholder="Phone Number"
+            label="Phone Number"
+            color="#558B2F"
+            type="number"
+            :rules="number"
+          />
+        </div>
+
+        <div class="cuadro">
+          <input type="text" placeholder="Shipping note (optional)">
+        </div>
+
+        <div class="cuadro2">
+          <v-text-field
+            v-model="city"
+            placeholder="City"
+            label="City"
+            color="#558B2F"
+            type="text"
+          />
+          <v-text-field
+            v-model="cp"
+            v-form
+            placeholder="Postal Code"
+            label="Postal Code"
+            color="#558B2F"
+            type="number"
+            :rules="postal"
+          >
+            <select>
+              <option value="" disabled selected hidden>
+                Selecciona Providencia &#9660;
+              </option>
+              <option value="">
+                Providencia 1
+              </option>
+              <option value="">
+                Providencia 2
+              </option>
+              <option value="">
+                Providencia 3
+              </option>
+              <option value="">
+                Providencia 4
+              </option>
+            </select>
           <!-- Agrega más opciones según sea necesario -->
-        </select>
-      </div>
+          </v-text-field>
+        </div>
 
-      <div class="cuadro">
-        <select>
-          <option value="" disabled selected hidden>
-            Country/Region &#9660;
-          </option>
-          <option value="italy">
-            italy
-          </option>
-          <option value="Mexico">
-            Mexico
-          </option>
+        <div class="cuadro">
+          <select>
+            <option value="" disabled selected hidden>
+              Country/Region &#9660;
+            </option>
+            <option value="Italy">
+              italy
+            </option>
+            <option value="Mexico">
+              Mexico
+            </option>
+            <option value="Mexico">
+              USA
+            </option>
+            <option value="Mexico">
+              Valle de Santiago
+            </option>
           <!-- Agrega más opciones según sea necesario -->
-        </select>
-      </div>
-
-      <div class="boton">
-        <input type="checkbox"><p>Save this informations for future fast checkout</p>
-      </div>
+          </select>
+        </div>
+      </v-form>
 
       <div class="finalcontainer">
-        <span class="back-to-cart">Back to cart</span>
+        <v-btn color="white" @click="backCart">
+          <span style="text-transform: none; color: green">
+            Back to cart
+          </span>
+        </v-btn>
       </div>
       <v-btn color="#E0E0E0" elevation="0" block @click="VelaSweerShipping">
         <span style="text-transform: none; color: green">
@@ -140,9 +284,98 @@
 
 <script>
 export default {
+  data () {
+    return {
+      showLogin: false,
+      validFormNew: false,
+      validForm: false,
+      emailNuevo: null,
+      passwordUserNueva: null,
+      email: null,
+      passwordUser: null,
+      numeroUser: null,
+      numeroUserNuevo: null,
+      name: null,
+      secname: null,
+      adress: null,
+      city: null,
+      cp: null,
+      required: [
+        v => !!v || 'Required Field'
+      ],
+      password: [
+        v => (v && v.length > 6) || 'Password must be more than 6 chars'
+      ],
+      correo: [
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
+      ],
+      number: [
+        v => (v && v.length > 9) || 'Password must be more than 6 chars'
+      ],
+      postal: [
+        v => (v && v.length < 7) || 'Password must be more than 6 chars'
+      ]
+    }
+  },
   methods: {
     VelaSweerShipping () {
       this.$router.push('/velasDos/velasDosCar/velasDosDetails/velasDosShipping')
+    },
+    backCart () {
+      this.$router.push('/velasDos/velasDosCar')
+    },
+    LoginUser () {
+      this.validForm = this.$refs.form.validate()
+      if (this.validForm) {
+        // Si se puede loggear, enviamos una alerta
+        const sendData = {
+          email: this.email,
+          password: this.passwordUser,
+          numero: this.numeroUser
+        }
+        const url = '/login'
+        this.$axios.post(url, sendData)
+          .then((res) => {
+            console.log('@@ res => ', res)
+            if (res.data.token) {
+              localStorage.setItem('token', res.data.token)
+              this.$router.push('/velasDos/velasDosCar/velasDosDetails/velasDosShipping')
+              // Redirigir a la siguiente página
+            }
+          })
+          .catch((err) => {
+            console.log('@@ err => ', err)
+          })
+      } else {
+        alert('Algo salió mal:(')
+      }
+    },
+    newSignup () {
+      this.validFormNew = this.$refs.formNew.validate()
+      if (this.validFormNew) {
+        const sendData = {
+          id: Date.now().toLocaleString(),
+          email: this.emailNuevo,
+          password: this.passwordUserNueva,
+          numero: this.numeroUserNuevo,
+          name: this.name,
+          secname: this.secname,
+          adress: this.adress,
+          city: this.city,
+          cp: this.cp
+        }
+        console.log('@@@ data => ', sendData)
+        const url = '/signup'
+        this.$axios.post(url, sendData)
+          .then((res) => {
+            console.log('@@ res => ', res)
+          })
+          .catch((err) => {
+            console.log('@@ err => ', err)
+          })
+      } else {
+        alert('Faltan Datos')
+      }
     }
   }
 }
@@ -202,7 +435,7 @@ export default {
 
 .cuadro {
   border: 1px solid green; /* Contorno verde */
-  width: 100%; /* Ancho igual al del div principal */
+  display: flex;
 }
 
 input {

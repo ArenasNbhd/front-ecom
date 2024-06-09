@@ -35,9 +35,62 @@
           <input type="text" placeholder="Escribe tu usuario por favor">
         </div>
         <div class="parte-derecha">
-          <a href="#" class="edit-link">Edit</a>
+          <v-btn color="white" @click="showEditContact = true">
+            <span style="text-transform: none; color: green">
+              Edit
+            </span>
+          </v-btn>
         </div>
       </div>
+
+      <v-dialog v-model="showEditContact" max-width="500" persistent>
+        <v-card>
+          <v-card-tittle class="headline">
+            Please, edit your Contact
+          </v-card-tittle>
+          <v-card-text>
+            <v-form
+              ref="formContact"
+              v-model="validFormEditContact"
+            >
+              <v-text-field
+                v-model="email"
+                label="Email"
+                placeholder="Write your Email"
+                color="#558B2F"
+                type="email"
+                :rules="correo"
+              />
+              <v-text-field
+                v-model="passwordUser"
+                label="Password"
+                type="password"
+                placeholder="Write your Password"
+                color="#558B2F"
+                :rules="password"
+              />
+            </v-form>
+          </v-card-text>
+          <v-card-actions>
+            <v-row>
+              <v-col cols="6">
+                <v-btn color="red darken-1" elevation="0" block @click="showEditContact = false">
+                  <span style="text-transform: none; color: white">
+                    Cancelar
+                  </span>
+                </v-btn>
+              </v-col>
+              <v-col cols="6">
+                <v-btn color="green darken-1" elevation="0" block>
+                  <span style="text-transform: none; color: white">
+                    Actualizar
+                  </span>
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
 
       <div class="cuadro">
         <div class="parte-izquierda">
@@ -47,9 +100,91 @@
           <input type="text" placeholder="Escribe tu direccion por favor">
         </div>
         <div class="parte-derecha">
-          <a href="#" class="edit-link">Edit</a>
+          <v-btn color="white" @click="showEditShip = true">
+            <span style="text-transform: none; color: green">
+              Edit
+            </span>
+          </v-btn>
         </div>
       </div>
+
+      <v-dialog v-model="showEditShip" max-width="500" persistent>
+        <v-card>
+          <v-card-tittle class="headline">
+            Please, edit your Contact
+          </v-card-tittle>
+          <v-card-text>
+            <v-form
+              ref="form"
+              v-model="validFormEdit"
+            >
+            <v-text-field
+                v-model="name"
+                placeholder="Name"
+                label="Name"
+                color="#558B2F"
+                type="name"
+              />
+              <v-text-field
+                v-model="secname"
+                placeholder="Second Name"
+                label="Second Name"
+                color="#558B2F"
+                type="name"
+              />
+              <v-text-field
+                v-model="adress"
+                placeholder="Adress and Number"
+                label="Adress and Number"
+                color="#558B2F"
+                type="text"
+              />
+              <v-text-field
+                v-model="numeroUserNuevo"
+                placeholder="Phone Number"
+                label="Phone Number"
+                color="#558B2F"
+                type="number"
+                :rules="number"
+              />
+              <v-text-field
+                v-model="city"
+                placeholder="City"
+                label="City"
+                color="#558B2F"
+                type="text"
+              />
+              <v-text-field
+                v-model="cp"
+                v-form
+                placeholder="Postal Code"
+                label="Postal Code"
+                color="#558B2F"
+                type="number"
+                :rules="postal"
+              />
+            </v-form>
+          </v-card-text>
+          <v-card-actions>
+            <v-row>
+              <v-col cols="6">
+                <v-btn color="red darken-1" elevation="0" block @click="showEditShip = false">
+                  <span style="text-transform: none; color: white">
+                    Cancelar
+                  </span>
+                </v-btn>
+              </v-col>
+              <v-col cols="6">
+                <v-btn color="green darken-1" elevation="0" block>
+                  <span style="text-transform: none; color: white">
+                    Actualizar
+                  </span>
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
 
       <div class="cuadro">
         <div class="parte-izquierda">
@@ -161,6 +296,18 @@
 
 <script>
 export default {
+  data () {
+    return {
+      showEditContact: false,
+      showEditShip: false
+    }
+  },
+  mounted () {
+    const token = localStorage.getItem('token')
+    if (!token) {
+      this.$router.push('/')
+    }
+  },
   methods: {
     VelaSweerConfirmed () {
       this.$router.push('/velasDos/velasDosCar/velasDosDetails/velasDosShipping/velasDosPayment/velasDosConfirmed')
